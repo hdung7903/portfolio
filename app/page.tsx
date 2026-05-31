@@ -11,8 +11,8 @@ export default function Home() {
     "@type": "Person",
     name: "Hoàng Dũng",
     alternateName: "hdung7903",
-    url: "https://hdung7903.me",
-    image: "https://hdung7903.me/avatar.jpg",
+    url: "https://hdung7903.id.vn",
+    image: "https://hdung7903.id.vn/avatar.jpg",
     sameAs: [
       "https://github.com/hdung7903",
       "https://linkedin.com/in/hdung7903",

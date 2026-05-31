@@ -26,7 +26,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hdung7903.me"),
+  metadataBase: new URL("https://hdung7903.id.vn"),
   title: "Hoàng Dũng — hdung7903 | Frontend & Fullstack Developer",
   description:
     "FPT University graduate specializing in JavaScript and TypeScript. I build clean, performant web applications — from polished UIs to scalable APIs. Available for freelance projects.",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "web developer Vietnam",
     "FPT University graduate",
   ],
-  authors: [{ name: "Hoàng Dũng", url: "https://hdung7903.me" }],
+  authors: [{ name: "Hoàng Dũng", url: "https://hdung7903.id.vn" }],
   creator: "Hoàng Dũng",
   publisher: "Hoàng Dũng",
   robots: {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "vi_VN",
-    url: "https://hdung7903.me",
+    url: "https://hdung7903.id.vn",
     title: "Hoàng Dũng — hdung7903 | Frontend & Fullstack Developer",
     description:
       "FPT University graduate specializing in JavaScript and TypeScript. I build clean, performant web applications — from polished UIs to scalable APIs. Available for freelance projects.",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     creator: "@hdung7903",
   },
   alternates: {
-    canonical: "https://hdung7903.me",
+    canonical: "https://hdung7903.id.vn",
   },
 };
 
@@ -107,7 +107,7 @@ export default function RootLayout({
 
         {/* Sticky nav — anchored during View Transitions */}
         <nav style={{ viewTransitionName: "site-header" }}>
-          <span className="logo">hdung7903.me</span>
+          <span className="logo">hdung7903.id.vn</span>
           <NavLinks />
         </nav>
 
@@ -115,7 +115,7 @@ export default function RootLayout({
 
         <footer>
           <span className="footer-copy">© 2026 Hoàng Dũng — hdung7903</span>
-          <span className="footer-copy">Built with React · Deployed on Vercel</span>
+          <span className="footer-copy">Built with React · Deployed on Raspberry Pi 5</span>
         </footer>
       </body>
     </html>
