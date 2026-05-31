@@ -12,7 +12,7 @@ export default function Home() {
     name: "Hoàng Dũng",
     alternateName: "hdung7903",
     url: "https://hdung7903.id.vn",
-    image: "https://hdung7903.id.vn/avatar.jpg",
+    image: "https://hdung7903.id.vn/og-image.png",
     sameAs: [
       "https://github.com/hdung7903",
       "https://linkedin.com/in/hdung7903",

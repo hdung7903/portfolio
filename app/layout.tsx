@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "Hoàng Dũng Portfolio",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Hoàng Dũng — hdung7903 | Frontend & Fullstack Developer Portfolio Image",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     title: "Hoàng Dũng — hdung7903 | Frontend & Fullstack Developer",
     description:
       "FPT University graduate specializing in JavaScript and TypeScript. I build clean, performant web applications — from polished UIs to scalable APIs. Available for freelance projects.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
     creator: "@hdung7903",
   },
   alternates: {
