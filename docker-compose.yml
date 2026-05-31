@@ -1,0 +1,27 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hdung-portfolio
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+
+  # Option: Expose through Cloudflare Tunnel directly in Docker Compose.
+  # To use this, create a .env file and add:
+  # TUNNEL_TOKEN=your_cloudflare_tunnel_token
+  # Then uncomment the section below.
+  #
+  # tunnel:
+  #   image: cloudflare/cloudflared:latest
+  #   container_name: hdung-portfolio-tunnel
+  #   restart: always
+  #   command: tunnel --no-autoupdate run
+  #   environment:
+  #     - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+  #   depends_on:
+  #     - portfolio

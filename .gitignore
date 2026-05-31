@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local pdf copy
+/Hoang-Dung-Le-Duy-TopCV.vn-210526.92634.pdf

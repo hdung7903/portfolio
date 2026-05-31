@@ -29,7 +29,7 @@ const PROJECTS_MAP: Record<string, ProjectData> = {
     subtitle: "Online study workspace built for FPT Education's student base.",
     role: "Fullstack Developer",
     duration: "04/2026 - 05/2026",
-    tags: ["Next.js", "TypeScript", "Firebase", "FPT Education", "Tailwind CSS"],
+    tags: ["Next.js", "TypeScript", "FPT Education", "Tailwind CSS"],
     liveUrl: "https://tramhoc.fpt.edu.vn",
     overview: "Trạm Học is an immersive online study workspace developed for FPT Education's \"Đợi Mình Là Rực Rỡ\" campaign. It provides students with a peaceful, highly focused digital environment to study, featuring custom Pomodoro timers, interactive sticky notes, atmospheric ambient lo-fi music playlists, and a distractions-free minimalist view to increase efficiency during intense exam periods.",
     features: [
@@ -44,8 +44,8 @@ const PROJECTS_MAP: Record<string, ProjectData> = {
         details: "Built with Next.js App Router and TypeScript for fast rendering, reliable static assets loading, and type safety across complex reactive states."
       },
       {
-        title: "Database & Sync",
-        details: "Utilizes Firebase Firestore for instant, serverless note saving and authentication, providing seamless syncing without heavy database overhead."
+        title: "State & Persistence",
+        details: "Client-side state is managed with React Context and localStorage, enabling Pomodoro timers, sticky notes, and audio state to persist across sessions without any backend dependency."
       },
       {
         title: "Media Handling",
@@ -138,7 +138,8 @@ export default async function ProjectDetail({ params }: { params: Params }) {
   return (
     <div className="case-study-container">
       <div className="case-study-hero">
-        <Link href="/#projects" className="back-link">
+        {/* @ts-ignore — transitionTypes is an experimental Next.js prop */}
+        <Link href="/#projects" className="back-link" transitionTypes={["nav-back"]}>
           ← Back to work
         </Link>
         <div className="cs-header">

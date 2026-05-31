@@ -1,23 +1,28 @@
 import "./portfolio.css";
+import Link from "next/link";
+import type { CSSProperties } from "react";
+import ProjectCard from "./components/ProjectCard";
+import ThreeSphereClient from "./components/ThreeSphereClient";
+import CVViewer from "./components/CVViewer";
 
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Hoàng Dũng",
-    "alternateName": "hdung7903",
-    "url": "https://hdung7903.me",
-    "image": "https://hdung7903.me/avatar.jpg",
-    "sameAs": [
+    name: "Hoàng Dũng",
+    alternateName: "hdung7903",
+    url: "https://hdung7903.me",
+    image: "https://hdung7903.me/avatar.jpg",
+    sameAs: [
       "https://github.com/hdung7903",
-      "https://linkedin.com/in/hdung7903"
+      "https://linkedin.com/in/hdung7903",
     ],
-    "jobTitle": "Frontend & Fullstack Developer",
-    "alumniOf": {
+    jobTitle: "Frontend & Fullstack Developer",
+    alumniOf: {
       "@type": "EducationalOrganization",
-      "name": "FPT University"
+      name: "FPT University",
     },
-    "knowsAbout": [
+    knowsAbout: [
       "JavaScript",
       "TypeScript",
       "HTML / CSS",
@@ -36,36 +41,88 @@ export default function Home() {
       "CI/CD",
       "Git",
       "Firebase",
-      "Web Development"
+      "Web Development",
     ],
-    "description": "FPT University graduate specializing in JavaScript and TypeScript. I build clean, performant web applications — from polished UIs to scalable APIs. Available for freelance.",
-    "email": "leduyhoangdung6i@gmail.com"
+    description:
+      "FPT University graduate specializing in JavaScript and TypeScript. I build clean, performant web applications — from polished UIs to scalable APIs. Available for freelance.",
+    email: "leduyhoangdung6i@gmail.com",
   };
+
+  // Skill lists
+  const frontendSkills = [
+    "JavaScript",
+    "TypeScript",
+    "HTML / CSS",
+    "React",
+    "Next.js",
+    "React Native",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Ant Design",
+  ];
+
+  const backendSkills = [
+    "Node.js",
+    "NestJS",
+    "Express.js",
+    "SQL: MySQL, PostgreSQL",
+    "NoSQL: MongoDB",
+    "Docker",
+    "CI/CD",
+    "Git",
+    "Firebase",
+  ];
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
 
       {/* HERO & SKILLS SECTION */}
       <div className="hero-section" id="skills">
+        {/* LEFT — Headline + CTA */}
         <div className="hero-left">
-          <div className="hero-tag">Available for freelance</div>
+          <div className="hero-tag">
+            <span className="typewriter-text">Available for freelance</span>
+          </div>
+
           <h1>
-            Frontend
-            <br />
-            <em>&amp; Fullstack</em>
-            <br />
-            Developer
+            <div className="reveal-wrap">
+              <span
+                className="reveal-line"
+                style={{ "--delay": "0" } as CSSProperties}
+              >
+                Frontend
+              </span>
+            </div>
+            <div className="reveal-wrap">
+              <em
+                className="reveal-line"
+                style={{ "--delay": "1" } as CSSProperties}
+              >
+                &amp; Fullstack
+              </em>
+            </div>
+            <div className="reveal-wrap">
+              <span
+                className="reveal-line"
+                style={{ "--delay": "2" } as CSSProperties}
+              >
+                Developer
+              </span>
+            </div>
           </h1>
+
           <p className="hero-sub">
-            FPT University graduate specialising in JavaScript and TypeScript. I build
-            clean, performant web applications — from polished UIs to scalable APIs.
+            FPT University graduate specialising in JavaScript and TypeScript. I
+            build clean, performant web applications — from polished UIs to
+            scalable APIs.
           </p>
+
           <div className="hero-cta">
             <a href="#contact" className="btn-primary">
               Get in touch →
@@ -73,38 +130,45 @@ export default function Home() {
             <a href="#projects" className="btn-ghost">
               View work
             </a>
+            <CVViewer />
           </div>
         </div>
 
+        {/* RIGHT — Three.js sphere + Tech stack */}
         <div className="hero-right">
+          {/* 3D accent sphere — desktop only, no SSR */}
+          <ThreeSphereClient />
+
           <div className="section-label-inline">Tech stack</div>
           <div className="skills-grid-2">
             <div className="skill-group">
               <div className="skill-group-title">Frontend</div>
               <div className="skill-tags">
-                <span className="skill-tag">JavaScript</span>
-                <span className="skill-tag">TypeScript</span>
-                <span className="skill-tag">HTML / CSS</span>
-                <span className="skill-tag">React</span>
-                <span className="skill-tag">Next.js</span>
-                <span className="skill-tag">React Native</span>
-                <span className="skill-tag">Tailwind CSS</span>
-                <span className="skill-tag">shadcn/ui</span>
-                <span className="skill-tag">Ant Design</span>
+                {frontendSkills.map((skill, i) => (
+                  <span
+                    key={skill}
+                    className="skill-tag"
+                    style={{ "--i": String(i) } as CSSProperties}
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
             <div className="skill-group">
               <div className="skill-group-title">Backend &amp; DevOps</div>
               <div className="skill-tags">
-                <span className="skill-tag">Node.js</span>
-                <span className="skill-tag">NestJS</span>
-                <span className="skill-tag">Express.js</span>
-                <span className="skill-tag">SQL: MySQL, PostgreSQL</span>
-                <span className="skill-tag">NoSQL: MongoDB</span>
-                <span className="skill-tag">Docker</span>
-                <span className="skill-tag">CI/CD</span>
-                <span className="skill-tag">Git</span>
-                <span className="skill-tag">Firebase</span>
+                {backendSkills.map((skill, i) => (
+                  <span
+                    key={skill}
+                    className="skill-tag"
+                    style={
+                      { "--i": String(frontendSkills.length + i) } as CSSProperties
+                    }
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -122,9 +186,10 @@ export default function Home() {
               <h3 className="timeline-title">Freelance Fullstack Developer</h3>
               <h4 className="timeline-org">Remote · Global</h4>
               <p className="timeline-desc">
-                Building bespoke web applications and high-performance landing pages.
-                Specializing in Next.js, React, Node.js, and modern cloud platforms. Focused
-                on deliverability, SEO excellence, and responsive layout systems.
+                Building bespoke web applications and high-performance landing
+                pages. Specializing in Next.js, React, Node.js, and modern cloud
+                platforms. Focused on deliverability, SEO excellence, and
+                responsive layout systems.
               </p>
             </div>
           </div>
@@ -136,9 +201,9 @@ export default function Home() {
               <h3 className="timeline-title">B.S. Software Engineering</h3>
               <h4 className="timeline-org">FPT University</h4>
               <p className="timeline-desc">
-                Focused on advanced software engineering principles, web technologies,
-                database management, and distributed systems. Built numerous practical
-                academic and commercial projects.
+                Focused on advanced software engineering principles, web
+                technologies, database management, and distributed systems.
+                Built numerous practical academic and commercial projects.
               </p>
             </div>
           </div>
@@ -149,20 +214,22 @@ export default function Home() {
       <div className="section" id="projects">
         <div className="section-label">Selected work</div>
         <div className="projects">
-          <div className="project-card">
+          {/* 3D tilt via ProjectCard client component */}
+          <ProjectCard>
             <div>
               <div className="project-num">01</div>
               <div className="project-title">Trạm Học</div>
               <p className="project-desc">
-                Online study workspace built for FPT Education&apos;s &quot;Đợi Mình Là Rực
-                Rỡ&quot; campaign. Features Pomodoro timer, lo-fi music player, sticky notes
-                and focus mode — supporting students during exam season.
+                Online study workspace built for FPT Education&apos;s &quot;Đợi
+                Mình Là Rực Rỡ&quot; campaign. Features Pomodoro timer, lo-fi
+                music player, sticky notes and focus mode — supporting students
+                during exam season.
               </p>
               <div className="project-tags">
                 <span className="ptag">Next.js</span>
                 <span className="ptag">TypeScript</span>
-                <span className="ptag">Firebase</span>
                 <span className="ptag">FPT Education</span>
+                <span className="ptag">Tailwind CSS</span>
               </div>
             </div>
             <div className="project-links">
@@ -174,20 +241,25 @@ export default function Home() {
               >
                 ↗ Live site
               </a>
-              <a className="plink" href="/projects/tram-hoc">
+              {/* @ts-ignore — transitionTypes is an experimental Next.js prop */}
+              <Link
+                className="plink"
+                href="/projects/tram-hoc"
+                transitionTypes={["nav-forward"]}
+              >
                 → Case study
-              </a>
+              </Link>
             </div>
-          </div>
+          </ProjectCard>
 
-          <div className="project-card">
+          <ProjectCard>
             <div>
               <div className="project-num">02</div>
               <div className="project-title">TeaCraft</div>
               <p className="project-desc">
-                Full-featured e-commerce storefront for a tea brand. Includes product
-                catalog, shopping cart, user authentication and order management with a
-                clean, responsive interface.
+                Full-featured e-commerce storefront for a tea brand. Includes
+                product catalog, shopping cart, user authentication and order
+                management with a clean, responsive interface.
               </p>
               <div className="project-tags">
                 <span className="ptag">React</span>
@@ -198,9 +270,14 @@ export default function Home() {
               </div>
             </div>
             <div className="project-links">
-              <a className="plink featured" href="/projects/tea-craft">
+              {/* @ts-ignore */}
+              <Link
+                className="plink featured"
+                href="/projects/tea-craft"
+                transitionTypes={["nav-forward"]}
+              >
                 → Case study
-              </a>
+              </Link>
               <a
                 className="plink"
                 href="https://github.com/hdung7903/teecraft-fe"
@@ -210,7 +287,7 @@ export default function Home() {
                 ↗ GitHub
               </a>
             </div>
-          </div>
+          </ProjectCard>
         </div>
       </div>
 
@@ -222,24 +299,27 @@ export default function Home() {
             <div className="process-num">01</div>
             <div className="process-title">Discovery &amp; Plan</div>
             <p className="process-desc">
-              Understanding target goals, analyzing user needs, choosing optimal tech stack,
-              and defining clear milestones to ensure on-time delivery.
+              Understanding target goals, analyzing user needs, choosing optimal
+              tech stack, and defining clear milestones to ensure on-time
+              delivery.
             </p>
           </div>
           <div className="process-card">
             <div className="process-num">02</div>
             <div className="process-title">Development &amp; Refinement</div>
             <p className="process-desc">
-              Writing clean, robust typescript code. Crafting beautiful layouts using modern
-              styling, ensuring accessibility (a11y) and fast performance metrics.
+              Writing clean, robust TypeScript code. Crafting beautiful layouts
+              using modern styling, ensuring accessibility (a11y) and fast
+              performance metrics.
             </p>
           </div>
           <div className="process-card">
             <div className="process-num">03</div>
             <div className="process-title">Deployment &amp; Handover</div>
             <p className="process-desc">
-              Configuring automated CI/CD pipeline tests, optimizing SEO/metadata, setting up
-              secure analytics, and delivering a clean package.
+              Configuring automated CI/CD pipeline tests, optimizing
+              SEO/metadata, setting up secure analytics, and delivering a clean
+              package.
             </p>
           </div>
         </div>
@@ -253,16 +333,16 @@ export default function Home() {
             <div className="service-icon">◈</div>
             <div className="service-title">Landing Page</div>
             <p className="service-desc">
-              Responsive, conversion-focused landing pages with clean UI and fast load
-              times. React or Next.js.
+              Responsive, conversion-focused landing pages with clean UI and
+              fast load times. React or Next.js.
             </p>
           </div>
           <div className="service-card">
             <div className="service-icon">◉</div>
             <div className="service-title">Web Application</div>
             <p className="service-desc">
-              Full-featured web apps — dashboards, portals, internal tools — with
-              authentication and database integration.
+              Full-featured web apps — dashboards, portals, internal tools —
+              with authentication and database integration.
             </p>
           </div>
           <div className="service-card">
@@ -277,8 +357,8 @@ export default function Home() {
             <div className="service-icon">◑</div>
             <div className="service-title">Mobile App (React Native)</div>
             <p className="service-desc">
-              Cross-platform iOS &amp; Android apps built with React Native and Expo.
-              Shared codebase, native feel.
+              Cross-platform iOS &amp; Android apps built with React Native and
+              Expo. Shared codebase, native feel.
             </p>
           </div>
         </div>
@@ -300,8 +380,8 @@ export default function Home() {
               together.
             </div>
             <p className="contact-sub">
-              Available for freelance projects, short-term contracts, and full-time
-              opportunities. Response within 24h.
+              Available for freelance projects, short-term contracts, and
+              full-time opportunities. Response within 24h.
             </p>
           </div>
           <div>
@@ -338,7 +418,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
     </>
   );
 }

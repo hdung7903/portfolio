@@ -595,28 +595,55 @@ footer {
   letter-spacing: 0.06em;
 }
 
-/* FADE IN */
+/* ── BASE FADE UP ──────────────────────────────────────── */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero-left {
-  animation: fadeUp 0.7s ease both;
-}
+.hero-left  { animation: fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
+.hero-right { animation: fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.22s both; }
 
-.hero-right {
-  animation: fadeUp 0.7s ease 0.15s both;
-}
-
+/* Scroll-driven section reveals — progressive enhancement */
 .section {
-  animation: fadeUp 0.7s ease 0.1s both;
+  animation: fadeUp 0.7s ease 0.08s both;
+}
+
+@supports (animation-timeline: view()) {
+  .section {
+    animation: fadeUpScroll linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 28%;
+  }
+
+  .timeline-item {
+    animation: fadeUpScroll linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 38%;
+  }
+  .timeline-item:nth-child(2) { animation-range: entry 12% entry 50%; }
+
+  .process-card {
+    animation: fadeUpScroll linear both;
+    animation-timeline: view();
+  }
+  .process-card:nth-child(1) { animation-range: entry  0% entry 40%; }
+  .process-card:nth-child(2) { animation-range: entry  8% entry 48%; }
+  .process-card:nth-child(3) { animation-range: entry 16% entry 56%; }
+
+  .service-card {
+    animation: fadeUpScroll linear both;
+    animation-timeline: view();
+  }
+  .service-card:nth-child(1) { animation-range: entry  0% entry 38%; }
+  .service-card:nth-child(2) { animation-range: entry  8% entry 46%; }
+  .service-card:nth-child(3) { animation-range: entry 16% entry 54%; }
+  .service-card:nth-child(4) { animation-range: entry 24% entry 62%; }
+
+  @keyframes fadeUpScroll {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 }
 
 /* EXPERIENCE TIMELINE */
@@ -995,4 +1022,364 @@ footer {
 }
 
 
+/* ═══════════════════════════════════════════════════════
+   VISUAL ENHANCEMENTS — All 12 effects
+   ═══════════════════════════════════════════════════════ */
 
+/* ── 1. Hero text reveal (per-line clip) ─────────────── */
+.reveal-wrap {
+  overflow: hidden;
+  display: block;
+  line-height: 1.08;
+}
+.reveal-line {
+  display: inline-block;
+  animation: revealSlide 0.9s cubic-bezier(0.16, 1, 0.3, 1)
+    calc(var(--delay, 0) * 160ms + 80ms) both;
+}
+@keyframes revealSlide {
+  from { transform: translateY(108%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── 2. Typewriter for hero-tag ──────────────────────── */
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 1.5px solid var(--accent);
+  animation:
+    typewriterExpand 1.4s steps(22, end) 0.1s forwards,
+    blinkCaret 0.65s step-end 1.5s 5;
+}
+@keyframes typewriterExpand {
+  to { width: 22ch; }
+}
+@keyframes blinkCaret {
+  from, to { border-color: transparent; }
+  50%       { border-color: var(--accent); }
+}
+
+/* ── 3. Skill tag stagger ────────────────────────────── */
+.skill-tag {
+  animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1)
+    calc(var(--i, 0) * 48ms + 350ms) both;
+}
+
+/* ── 4. Magnetic glow on interactive elements ────────── */
+.btn-primary,
+.btn-ghost,
+.plink,
+.clink {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before,
+.btn-ghost::before,
+.plink::before,
+.clink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 80px at var(--btn-x, -100px) var(--btn-y, -100px),
+    rgba(212, 255, 0, 0.22),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover::before,
+.btn-ghost:hover::before,
+.plink:hover::before,
+.clink:hover::before {
+  opacity: 1;
+}
+
+/* ── 5. Card glare + 3D base ─────────────────────────── */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+  transition: background 0.12s ease;
+}
+.project-card,
+.process-card,
+.service-card {
+  overflow: hidden;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+.project-card > *:not(.card-glare),
+.process-card > *:not(.card-glare),
+.service-card > *:not(.card-glare) {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── 6. Hero dot-grid + mouse glow ──────────────────── */
+.hero-section {
+  --mouse-x: -600px;
+  --mouse-y: -600px;
+}
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(
+      circle 300px at var(--mouse-x) var(--mouse-y),
+      rgba(212, 255, 0, 0.055),
+      transparent 70%
+    ),
+    radial-gradient(circle 1.5px at center, #222220 1.5px, transparent 1.5px);
+  background-size: 100% 100%, 28px 28px;
+}
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 7. Custom cursor ────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  html, a, button { cursor: none; }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    margin-left: -4px;
+    margin-top: -4px;
+    will-change: transform;
+    transition: width 0.22s ease, height 0.22s ease, margin 0.22s ease, opacity 0.22s ease;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(212, 255, 0, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    margin-left: -16px;
+    margin-top: -16px;
+    will-change: transform;
+    transition:
+      width 0.35s cubic-bezier(0.16,1,0.3,1),
+      height 0.35s cubic-bezier(0.16,1,0.3,1),
+      margin 0.35s cubic-bezier(0.16,1,0.3,1),
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+
+  [data-cursor-hover='true'] .cursor-dot {
+    width: 14px; height: 14px;
+    margin-left: -7px; margin-top: -7px;
+    opacity: 0.55;
+  }
+
+  [data-cursor-hover='true'] .cursor-ring {
+    width: 46px; height: 46px;
+    margin-left: -23px; margin-top: -23px;
+    border-color: var(--accent);
+    background: rgba(212, 255, 0, 0.04);
+  }
+}
+
+/* ── 8. Grain texture overlay ────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99997;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* ── 9. Three.js sphere container ────────────────────── */
+.three-sphere {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.8s both;
+}
+@media (max-width: 1024px) {
+  .three-sphere { display: none; }
+}
+
+/* ── 10. Nav active link ─────────────────────────────── */
+.nav-active {
+  color: var(--text) !important;
+  position: relative;
+}
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  border-radius: 1px;
+  animation: fadeUp 0.2s ease both;
+}
+
+/* ── 11. Logo subtle pulse ───────────────────────────── */
+.logo {
+  position: relative;
+}
+.logo::after {
+  content: '';
+  position: absolute;
+  left: -6px; top: 50%;
+  transform: translateY(-50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+/* ── 12. prefers-reduced-motion guard ────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .cursor-dot,
+  .cursor-ring { display: none; }
+}
+
+/* ── CV Viewer ─────────────────────────────────────────── */
+.cv-trigger {
+  /* inherits .btn-ghost styles */
+  font-size: 13px;
+}
+
+/* Full-screen overlay */
+.cv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: rgba(10, 10, 8, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeUp 0.25s ease both;
+}
+
+/* Modal panel */
+.cv-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+}
+
+/* Top bar */
+.cv-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: 1rem;
+}
+
+.cv-modal-title {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cv-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cv-no-download {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.cv-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 2px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.cv-close:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* PDF iframe container */
+.cv-frame-wrap {
+  flex: 1;
+  overflow: hidden;
+  /* prevent drag-select saving */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cv-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 70vh;
+  border: none;
+  display: block;
+  /* pointer-events on so scrolling works, but no download UI */
+  pointer-events: auto;
+}
+
+@media (max-width: 640px) {
+  .cv-overlay { padding: 0.75rem; }
+  .cv-no-download { display: none; }
+  .cv-modal { max-height: 95vh; }
+}
