@@ -115,7 +115,7 @@ export default function RootLayout({
 
         <footer>
           <span className="footer-copy">© 2026 Hoàng Dũng — hdung7903</span>
-          <span className="footer-copy">Built with React · Deployed on Raspberry Pi 5</span>
+          <span className="footer-copy">Built with React & Next.js</span>
         </footer>
       </body>
     </html>
