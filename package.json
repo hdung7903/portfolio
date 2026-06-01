@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-favicons": "node generate-favicons.js"
   },
   "dependencies": {
     "@types/three": "^0.184.1",
