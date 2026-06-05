@@ -5,6 +5,7 @@ import "./portfolio.css";
 import NavLinks from "./components/NavLinks";
 import CustomCursor from "./components/CustomCursor";
 import ClientEffects from "./components/ClientEffects";
+import ScrollProgress from "./components/ScrollProgress";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -109,6 +110,9 @@ export default function RootLayout({
       className={`${outfit.variable} ${dmMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Scroll progress indicator */}
+        <ScrollProgress />
+
         {/* Custom neon cursor */}
         <CustomCursor />
 
@@ -125,7 +129,7 @@ export default function RootLayout({
 
         <footer>
           <span className="footer-copy">© 2026 Hoàng Dũng — hdung7903</span>
-          <span className="footer-copy">Built with React & Next.js</span>
+          <span className="footer-copy">Built with Next.js</span>
         </footer>
       </body>
     </html>

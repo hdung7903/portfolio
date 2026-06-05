@@ -48,6 +48,61 @@ export default function Home() {
     email: "leduyhoangdung6i@gmail.com",
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How much does a project cost?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It depends on scope. A landing page, a full web app, and a mobile app are very different efforts. Tell me what you need and I'll send a clear, itemised quote with no surprises — usually within a day.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long will it take?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A polished landing page typically takes 1–2 weeks; a full web app with auth and a database runs 4–8 weeks depending on features. You'll get a milestone-based timeline before we start.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do I own the code and design?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes — completely. On delivery you receive the full source code, documentation, and deployment setup. Everything lives in your repositories and accounts. No vendor lock-in.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What happens after launch?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "I don't disappear after handover. I offer a support window for fixes and questions, and I'm available for ongoing maintenance or new features whenever you need them.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you work with my existing team or codebase?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Absolutely. I can join an existing project, follow your conventions, and collaborate through Git, code reviews, and your preferred tools — or take full ownership of a greenfield build.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do we get started?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Just send me a message describing your idea. We'll talk through the goals, I'll suggest an approach and a quote, and once it works for you, we begin.",
+        },
+      },
+    ],
+  };
+
   // Skill lists
   const frontendSkills = [
     "JavaScript",
@@ -79,6 +134,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
         }}
       />
 
@@ -364,6 +425,140 @@ export default function Home() {
         </div>
       </div>
 
+      {/* WHY WORK WITH ME */}
+      <div className="section" id="why">
+        <div className="section-label">Why work with me</div>
+        <div className="pillars-grid">
+          <div className="pillar-card">
+            <span className="pillar-icon">◇</span>
+            <div className="pillar-title">Clear communication</div>
+            <p className="pillar-desc">
+              Regular updates, honest timelines, and no jargon. You always know
+              exactly where your project stands.
+            </p>
+          </div>
+          <div className="pillar-card">
+            <span className="pillar-icon">◆</span>
+            <div className="pillar-title">Production-grade code</div>
+            <p className="pillar-desc">
+              Type-safe TypeScript, tested flows, and clean architecture you or
+              any future developer can build on.
+            </p>
+          </div>
+          <div className="pillar-card">
+            <span className="pillar-icon">◈</span>
+            <div className="pillar-title">Performance first</div>
+            <p className="pillar-desc">
+              Fast load times, strong Core Web Vitals, and SEO-ready output —
+              because speed wins users and rankings.
+            </p>
+          </div>
+          <div className="pillar-card">
+            <span className="pillar-icon">❖</span>
+            <div className="pillar-title">You own everything</div>
+            <p className="pillar-desc">
+              Full source code, documentation, and a clean handover. No
+              lock-in, no hidden dependencies.
+            </p>
+          </div>
+        </div>
+
+        <div className="stats-strip">
+          <div className="stat-item">
+            <span className="stat-value">&lt;24h</span>
+            <span className="stat-label">Response time</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">100%</span>
+            <span className="stat-label">Code ownership</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">7+</span>
+            <span className="stat-label">Years coding</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">∞</span>
+            <span className="stat-label">Post-launch support</span>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ */}
+      <div className="section" id="faq">
+        <div className="section-label">FAQ</div>
+        <div className="faq-list">
+          <details className="faq-item">
+            <summary>
+              How much does a project cost?
+              <span className="faq-marker" aria-hidden="true" />
+            </summary>
+            <p className="faq-answer">
+              It depends on scope. A landing page, a full web app, and a mobile
+              app are very different efforts. Tell me what you need and I&apos;ll
+              send a clear, itemised quote with no surprises — usually within a
+              day.
+            </p>
+          </details>
+          <details className="faq-item">
+            <summary>
+              How long will it take?
+              <span className="faq-marker" aria-hidden="true" />
+            </summary>
+            <p className="faq-answer">
+              A polished landing page typically takes 1–2 weeks; a full web app
+              with auth and a database runs 4–8 weeks depending on features.
+              You&apos;ll get a milestone-based timeline before we start so you
+              can plan around it.
+            </p>
+          </details>
+          <details className="faq-item">
+            <summary>
+              Do I own the code and design?
+              <span className="faq-marker" aria-hidden="true" />
+            </summary>
+            <p className="faq-answer">
+              Yes — completely. On delivery you receive the full source code,
+              documentation, and deployment setup. Everything lives in your
+              repositories and accounts. No vendor lock-in.
+            </p>
+          </details>
+          <details className="faq-item">
+            <summary>
+              What happens after launch?
+              <span className="faq-marker" aria-hidden="true" />
+            </summary>
+            <p className="faq-answer">
+              I don&apos;t disappear after handover. I offer a support window
+              for fixes and questions, and I&apos;m available for ongoing
+              maintenance or new features whenever you need them.
+            </p>
+          </details>
+          <details className="faq-item">
+            <summary>
+              Can you work with my existing team or codebase?
+              <span className="faq-marker" aria-hidden="true" />
+            </summary>
+            <p className="faq-answer">
+              Absolutely. I can join an existing project, follow your
+              conventions, and collaborate through Git, code reviews, and your
+              preferred tools — or take full ownership of a greenfield build.
+            </p>
+          </details>
+          <details className="faq-item">
+            <summary>
+              How do we get started?
+              <span className="faq-marker" aria-hidden="true" />
+            </summary>
+            <p className="faq-answer">
+              Just{' '}
+              <a href="#contact">send me a message</a> describing your idea.
+              We&apos;ll talk through the goals, I&apos;ll suggest an approach
+              and a quote, and once it works for you, we begin. Simple.
+            </p>
+          </details>
+        </div>
+      </div>
+
       {/* CONTACT */}
       <div className="section" id="contact">
         <div className="section-label">Contact</div>
@@ -383,6 +578,20 @@ export default function Home() {
               Available for freelance projects, short-term contracts, and
               full-time opportunities. Response within 24h.
             </p>
+            <div className="contact-trust">
+              <span className="trust-line">
+                <span className="check">✓</span> Free initial consultation — no
+                commitment
+              </span>
+              <span className="trust-line">
+                <span className="check">✓</span> Clear, fixed quote before any
+                work begins
+              </span>
+              <span className="trust-line">
+                <span className="check">✓</span> Full code ownership handed over
+                on delivery
+              </span>
+            </div>
           </div>
           <div>
             <div className="contact-links">
