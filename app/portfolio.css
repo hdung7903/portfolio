@@ -1050,11 +1050,11 @@ footer {
   width: 0;
   border-right: 1.5px solid var(--accent);
   animation:
-    typewriterExpand 1.4s steps(22, end) 0.1s forwards,
+    typewriterExpand 1.4s steps(23, end) 0.1s forwards,
     blinkCaret 0.65s step-end 1.5s 5;
 }
 @keyframes typewriterExpand {
-  to { width: 28ch; }
+  to { width: 30ch; }
 }
 @keyframes blinkCaret {
   from, to { border-color: transparent; }
