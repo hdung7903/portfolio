@@ -593,6 +593,7 @@ footer {
   font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.06em;
+  margin: 0;
 }
 
 /* ── BASE FADE UP ──────────────────────────────────────── */
