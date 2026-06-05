@@ -1054,7 +1054,7 @@ footer {
     blinkCaret 0.65s step-end 1.5s 5;
 }
 @keyframes typewriterExpand {
-  to { width: 22ch; }
+  to { width: 26ch; }
 }
 @keyframes blinkCaret {
   from, to { border-color: transparent; }

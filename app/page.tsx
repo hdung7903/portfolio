@@ -196,7 +196,7 @@ export default function Home() {
 
           <div className="timeline-item">
             <div className="timeline-dot" />
-            <div className="timeline-date">2021 - 2024</div>
+            <div className="timeline-date">2021 - 2025</div>
             <div className="timeline-content">
               <h3 className="timeline-title">B.S. Software Engineering</h3>
               <h4 className="timeline-org">FPT University</h4>
