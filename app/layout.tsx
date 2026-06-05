@@ -124,8 +124,8 @@ export default function RootLayout({
         {children}
 
         <footer>
-          <p className="footer-copy">© 2026 Hoàng Dũng — hdung7903</p>
-          <p className="footer-copy">Built with React & Next.js</p>
+          <span className="footer-copy">© 2026 Hoàng Dũng — hdung7903</span>
+          <span className="footer-copy">Built with React & Next.js</span>
         </footer>
       </body>
     </html>
