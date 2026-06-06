@@ -349,6 +349,45 @@ export default function Home() {
               </a>
             </div>
           </ProjectCard>
+
+          <ProjectCard>
+            <div>
+              <div className="project-num">03</div>
+              <div className="project-title">ERP Template</div>
+              <p className="project-desc">
+                Full-stack enterprise ERP system with HRM, Agile/Scrum project
+                management, internal chat, calendar and real-time notifications.
+                Built on a Spring Boot modular monolith with a Next.js dashboard,
+                RBAC, JWT auth and PostgreSQL.
+              </p>
+              <div className="project-tags">
+                <span className="ptag">Next.js</span>
+                <span className="ptag">Spring Boot</span>
+                <span className="ptag">Java</span>
+                <span className="ptag">PostgreSQL</span>
+                <span className="ptag">Redis</span>
+                <span className="ptag">Docker</span>
+              </div>
+            </div>
+            <div className="project-links">
+              {/* @ts-ignore */}
+              <Link
+                className="plink featured"
+                href="/projects/erp-template"
+                transitionTypes={["nav-forward"]}
+              >
+                → Case study
+              </Link>
+              <a
+                className="plink"
+                href="https://github.com/hdung7903/erp-template"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ↗ GitHub
+              </a>
+            </div>
+          </ProjectCard>
         </div>
       </div>
 

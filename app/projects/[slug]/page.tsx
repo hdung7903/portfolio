@@ -102,11 +102,56 @@ const PROJECTS_MAP: Record<string, ProjectData> = {
         solution: "Used modern aspect-ratio CSS controls, layout containers, and loaded compressed modern WebP formats to prevent Content Layout Shift (CLS)."
       }
     ]
+  },
+  "erp-template": {
+    num: "03",
+    title: "ERP Template",
+    subtitle: "Full-stack enterprise ERP with HRM, Agile project management, internal chat and real-time notifications.",
+    role: "Fullstack Developer",
+    duration: "05/2025 - Present",
+    tags: ["Next.js", "React", "Spring Boot", "Java", "PostgreSQL", "Redis", "Docker"],
+    githubUrl: "https://github.com/hdung7903/erp-template",
+    overview: "ERP Template is a full-stack enterprise resource planning system that unifies human resource management (HRM), Agile/Scrum project management, an internal team calendar, real-time chat and instant notifications into a single platform. The backend is a Spring Boot modular monolith backed by PostgreSQL and Redis, while the frontend is a Next.js dashboard. The system ships with role-based access control (RBAC), JWT authentication, OTP email verification and a fully implemented HRM suite covering employee records, labour contracts, leave approval workflows and geolocation-aware timekeeping.",
+    features: [
+      "Complete HRM suite: employee onboarding, skill profiles, labour contracts with Vietnamese labour-law validation, two-level leave approval, and IP/GPS-based timekeeping.",
+      "Role-based access control with a visual permission matrix for managing roles and granular permissions.",
+      "Secure authentication: email login, OTP verification, refresh tokens, forced first-login password change, and account locking enforced at the JWT filter level.",
+      "Agile/Scrum workspace with projects, sprints, Kanban board, backlog and issue tracking (Epic, Story, Task, Bug).",
+      "Internal collaboration: real-time chat channels and direct messages over WebSocket, team calendar and notification center."
+    ],
+    architecture: [
+      {
+        title: "Backend — Modular Monolith",
+        details: "Spring Boot 4 on Java 17, organized into independent domain modules (auth, hrm, project, issue, ticket, calendar, chat, notification). Uses Spring Data JPA, Spring Security, Flyway migrations and WebSocket for real-time features."
+      },
+      {
+        title: "Frontend — Next.js Dashboard",
+        details: "Next.js 16 App Router with React 19 and TypeScript. State is managed with Redux Toolkit, the UI is built on Tailwind CSS v4 with shadcn/ui and Radix primitives, and dashboards are visualized with Recharts."
+      },
+      {
+        title: "Data & Infrastructure",
+        details: "PostgreSQL as the primary store with Flyway-versioned schema migrations, Redis for caching and sessions, Spring Mail + Thymeleaf for transactional emails, and Docker Compose to orchestrate the full stack locally."
+      }
+    ],
+    challenges: [
+      {
+        problem: "Enforcing complex Vietnamese labour-law rules (probation limits, contract durations, regional minimum wage) consistently when creating contracts.",
+        solution: "Centralized business validation in the contract service layer with explicit rule checks, surfacing clear, localized error messages to the frontend before persistence."
+      },
+      {
+        problem: "Preventing access from locked accounts without hammering the database on every request.",
+        solution: "Implemented a JwtAuthenticationFilter that validates account status from the token claims, rejecting requests from INACTIVE accounts without repeated database lookups."
+      },
+      {
+        problem: "Keeping a large feature surface (HRM, Agile, chat, calendar) maintainable across a two-person stack split.",
+        solution: "Adopted a modular monolith on the backend and route-group based App Router structure on the frontend, isolating each domain so modules can evolve and connect to APIs incrementally."
+      }
+    ]
   }
 };
 
 export function generateStaticParams() {
-  return [{ slug: "tram-hoc" }, { slug: "tea-craft" }];
+  return [{ slug: "tram-hoc" }, { slug: "tea-craft" }, { slug: "erp-template" }];
 }
 
 type Params = Promise<{ slug: string }>;

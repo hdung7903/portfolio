@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/projects/tram-hoc',
     '/projects/tea-craft',
+    '/projects/erp-template',
   ];
 
   return routes.map((route) => ({
